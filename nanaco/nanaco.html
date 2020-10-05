@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<!-- #BeginTemplate "nanaco.dwt" -->
+
+<head>
+<meta charset=utf-8>
+<meta http-equiv="Content-Language" content="ja">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<!-- #BeginEditable "doctitle" -->
+<title>3つのRで</title>
+<!-- #EndEditable -->
+<!--[if lt IE 9]>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142185552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142185552-1');
+</script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<div class="container">
+	<header>
+		<h1>3つのRで...</h1>
+		<p>tripleRのサイト</p>
+		<nav id="snav">
+			<ul>
+				<li></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="page_content">
+		<div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="../index.html" itemprop="item"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1" /></span> &gt; 
+		<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a href="nanaco.html" itemprop="item"><span itemprop="name">
+		nanacoギフト登録ツール</span></a><meta itemprop="position" content="2" /></span>
+	</div>
+	<article>
+	<!-- #BeginEditable "content" -->
+			<h2>概要</h2>
+<!-- #EndEditable -->
+	</article>
+	<aside>
+<!-- #BeginEditable "related" -->
+		<h3>機能</h3>
+		<p>ベネフィットワンから届くnanacoギフトIDが書かれたメールから、自動でnanacoカードにギフトIDを登録します。</p>
+		<h3>特徴</h3>
+		<p>Google 
+		Chrome上でファイル内のギフトIDを表示するhtml(javascript)ファイルとiMacrosのマクロの組み合わせで実現します。<br>
+		Tamper(Grease)monkeyなどを使う場合と異なり、元々のサイトのファイルには手を加えません。<br>
+		必要な拡張機能(Chrome)はマクロ作成&amp;実行環境のiMacrosとポップアップウィンドウをタブで開くことが出来るようにするTab 
+		Position Customizer 2です。<br>サイトへログインする際のnanaco番号、パスワード等はマクロ内では管理しません。<br>
+		ギフトIDが書かれたメールの加工は不要です。(ベネフィットワンのメール形式に準拠しています。)</p>
+		<h3>制限</h3>
+		<p>Firefoxには非対応です。ポップアップウィンドウの柔軟なコントロールが出来ないようなので諦めました。<br>
+		iMacrosのマクロの公開は規約に抵触する恐れがあるので、説明する手順に基づいてユーザサイドで作成する必要があります。</p>
+		<h3>提供方法の説明</h3>
+		<p>公開するのはjavascriptを含むhtmlファイル('ギフトID表示ページ'と呼びます)一つだけです。<br>
+		このファイルは、ギフトIDが書かれたメールテキストを読み込んで、処理済みとされた数読み飛ばした後、ボタンが押される度に順次ギフトIDを4桁に区切って表示する(だけの)ものです。これをテキストとして公開します。<br>
+		<br>
+		iMacrosのマクロについては、ブラウザの拡張機能として提供される無料版には'個人的利用に限る'との制限があり、例え無償であってもマクロファイルそのものの公開はこれに抵触する恐れがあるため控えることにします。<br>
+		その代わりに、マクロファイルの作成(記録)方法と、'nanacoギフトID表示ページ'と組み合わせて使うために修正する箇所を説明します。</p>
+		<h3>補足</h3>
+		<p>直接ダウンロード(若しくはweb上で動作)出来るようにしたり、iMacrosのマクロ自体を公開しないのにはもう一つ理由があります。<br>
+		<br>
+		ブラックボックス化してしまえば誰でも使えますが、万一改ざんされてしまった場合には、登録し残した分のギフトID情報を誰かに盗まれるということも起こり得ます。<br>
+		そのため、htmlファイルの中身を晒し、修飾を排除して(見栄えは悪くなるのですが)機能がわかりやすくし、更にコメントも多数記述して、出来るだけ処理内容が分かりやすく、もし改ざんされた場合にもそれが目立つようにしています。<br>
+		また、マクロについても、自ら作成することによって、処理内容について理解した上で使用することが出来ます。(iMacrosは色々活用出来る場面があるので使えると便利です。)<br>
+		<br>
+		ブラックボックスのまま使いたいという方は、16桁を4桁に分けて入力してくれる(更に一部ボタンを自動で押してくれる)ような半自動のツールが幾つも提供されていますので、それを使った方が安全だと思います。<br>
+		これなら入力したギフトIDは直ぐに消費されてしまうため問題が起きる可能性はありません。<br><br>
+		繰り返しになりますが、便利なツールですが、危険性もある事を充分ご理解の上、ご自分でリスクを取れる方のみ御利用下さい。<br>
+		利用に関して制限はありませんが、無保証です。使用によって如何なる損害が生じても当方は一切の責任を負いません。</p>
+<!-- #EndEditable -->
+	</aside>
+	<div class="inner"><p class="right"><a href="#">▲このページのトップへ</a></p></div>
+</div>
+	<div id="sidebar">
+		<aside>
+			<h3>最近の更新</h3>
+			<p>
+			19/06/16 リリース</p>
+		<h3>&nbsp;</h3>
+			<ul>
+				<li><a href="nanaco.html">概要</a></li>
+				<a href="nanaco_s.html">
+				<li><a href="nanaco_s.html">ギフトID表示ページ</a></li>
+				</a>
+				<li><a href="nanaco_p.html">準備</a></li>
+				<li><a href="nanaco_m.html">iMacrosマクロ</a></li>
+				<li><a href="nanaco_c.html">注意事項</a></li>
+			</ul>
+		</aside>
+	</div>
+	<footer>
+		<p class="center">&copy;2019 [tripleR]</p>
+	</footer>
+</div>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
