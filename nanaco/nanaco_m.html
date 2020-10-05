@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<!-- #BeginTemplate "nanaco.dwt" -->
+
+<head>
+<meta charset=utf-8>
+<meta http-equiv="Content-Language" content="ja">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<!-- #BeginEditable "doctitle" -->
+<title>3つのRで</title>
+<style type="text/css">
+.auto-style1 {
+	color: #FF0000;
+}
+</style>
+<!-- #EndEditable -->
+<!--[if lt IE 9]>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142185552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142185552-1');
+</script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<div class="container">
+	<header>
+		<h1>3つのRで...</h1>
+		<p>tripleRのサイト</p>
+		<nav id="snav">
+			<ul>
+				<li></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="page_content">
+		<div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="../index.html" itemprop="item"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1" /></span> &gt; 
+		<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a href="nanaco.html" itemprop="item"><span itemprop="name">
+		nanacoギフト登録ツール</span></a><meta itemprop="position" content="2" /></span>
+	</div>
+	<article>
+	<!-- #BeginEditable "content" -->
+			<h2>iMacrosマクロ</h2>
+<!-- #EndEditable -->
+	</article>
+	<aside>
+<!-- #BeginEditable "related" -->
+		<h3>登録の準備</h3>
+		<p>ギフトID表示ページを再読込みし、処理済み数(processed)、ファイル名を選択します。<br>
+		(ファイル中のギフトIDの何件かを既に登録してある場合に、その数を処理済み数にセットします。)<br>
+		新しいタブを開き、nanaco公式サイトを開きます。'会員メニュー 
+		ログイン'を選択すると、新しいウィンドウが一瞬開きますが、直ぐにタブになるはずです。<br>
+		そこで今回登録するnanacoカードでログインします。公式サイトのタブは不要なので閉じます。ログインページをブックマークしておくと次回以降手間が省けます。<br>
+		ログインしたら、メニューから'nanacoギフト登録'を選び'御利用約款に同意の上、登録'をクリックし、ギフトID登録フォームを表示します。(この時にも同じように一度別ウィンドウが開き、その後タブになります。)<br>
+		3つのタブが並んだら一番左のローカルファイルを選択します。これで登録の準備は完了です。</p>
+		<h3>登録</h3>
+		<p>iMacrosを起動します。<br>iMacrosの'RECORD'、'Recoard Macro'クリックし記録を開始します。<br>
+		ギフトID表示ページの'set giftId'ボタンをクリック。<br>(表示される4桁の文字列4つをメモしておきます)<br>
+		2番目のタブを選択。<br>'御利用約款に同意の上、登録'をクリック。<br>
+		3番目のタブに遷移するので、ギフトID蘭にメモしておいた4つの文字列を順次入力します。<br>
+		'確認画面へ'を選択し次の画面で'登録する'を選択。<br>登録が終了したら、('お受け取り方法'はクリックせず)一番左のタブをクリック。<br>
+		登録するのはここまでです。'Stop'をクリックして終了します。<br>エディット画面が開くので、名前を付けて登録(Save As &amp; 
+		Close)を選択して、適当な名前(拡張子のimmは変えないこと)を付けて保存します。</p>
+		<h3>修正</h3>
+		<p>'MANAGE'から'Edit Macro'を選択し、エディット画面を表示します。<br>
+		以降編集を行ないますが、エディット画面ではカーソルが非常に見にくいので、エディタ(メモ帳でも可)にコピーして、そちらで編集後こちらに戻す方法もあります。<br>
+		<br>2行目を下記の行に書き換え<br>SET !EXTRACT_TEST_POPUP NO<br><br>
+		もともとの行は今回サイトを開いた状態から開始するため不要。<br>
+		書き換える行は変数EXTRACTを使う場合の確認のポップアップを止めるために必要。<br><br>3行目の後に、以下の3行を追加<br>SET 
+		!EXTRACT NULL <br>TAG POS=1 TYPE=TEXTAREA FORM=NAME:giform ATTR=NAME:<span class="auto-style1">gi01</span> 
+		EXTRACT=txt<br>SET !<span class="auto-style1">VAR1</span> {{!EXTRACT}}<br>
+		更に、gi01をgi02,gi03,gi04に、VAR1をVAR2,VAR3,EXTRACTにそれぞれ置き換えて3回繰り返し追加。<br>
+		(但し3回目に関しては、EXTRACTはそのまま利用するため3行目は不要となり、実際には2行だけ)<br><br>'set 
+		giftId'ボタンを押すことで表示された4桁ずつのギフトID(gi01-gi04)をそれぞれ変数(VAR1-VAR3,EXTRACT)に格納するため。<br>
+		<br>4桁のギフトIDを手入力した部分4箇所を、それぞれ変数の値を利用する形に書き換え<br>CONTENT=XXXX =&gt; 
+		CONTENT{{!<span class="auto-style1">VAR1</span>}}<br>
+		同様に以降の3行をVAR2,VAR3,EXTRACTでそれぞれ書き換え<br><br>
+		nanacogiftのサイトの書き方が悪いのか、iMacros側に問題があるのか不明だが、このままでは正常に動作しないので<br>
+		最後から1行前、btn_register_b_h.gifの部分をbtn_register_b.gifに書き換え<br><br>
+		結果全体で24行になるはずです。</p>
+		<h3>動作確認</h3>
+		<p>
+		マクロの登録と修正後に引き続き行なうときはそのまま、それ以外の時はギフトID表示ページを再読込みして処理済み数をセット(例えばマクロ記録のために1つギフトIDを使った場合には1に)した後ファイル選択。<br>
+		iMacrosで'PLAY'を選択し、'Play Macro'をクリック。<br>
+		修正に問題がなければ順次処理が進み、ギフトIDがひとつ登録されるはずです。</p>
+		<h3>実際の動作</h3>
+		<p>複数回処理するためには、countのMaxの値を書き換えて'Play Loop'をクリックすればその回数処理します。<br>
+		100回にすればメールを一度に処理することも可能です。<br>
+		ですが、iMacrosはサイトのレスポンスが余り良くない場合でも柔軟に対応してくれますが、それでもごく希に処理しきれない場合も起こり得ます。<br>
+		その時は、登録できなかったギフトIDを一つ一つ(登録済みかどうか)確認しなくてはならないため、1度の処理数はあまり多くせず、センターお預かり分に反映される数と照らし合わせながら、何度かに分割して処理した方がよいと思います。<br>
+		若しくは、ギフトIDが登録済みの時だけ正常にループして未登録のギフトIDを発見するようなマクロを作る方法もあると思われます。</p>
+<!-- #EndEditable -->
+	</aside>
+	<div class="inner"><p class="right"><a href="#">▲このページのトップへ</a></p></div>
+</div>
+	<div id="sidebar">
+		<aside>
+			<h3>最近の更新</h3>
+			<p>
+			19/06/16 リリース</p>
+		<h3>&nbsp;</h3>
+			<ul>
+				<li><a href="nanaco.html">概要</a></li>
+				<a href="nanaco_s.html">
+				<li><a href="nanaco_s.html">ギフトID表示ページ</a></li>
+				</a>
+				<li><a href="nanaco_p.html">準備</a></li>
+				<li><a href="nanaco_m.html">iMacrosマクロ</a></li>
+				<li><a href="nanaco_c.html">注意事項</a></li>
+			</ul>
+		</aside>
+	</div>
+	<footer>
+		<p class="center">&copy;2019 [tripleR]</p>
+	</footer>
+</div>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
