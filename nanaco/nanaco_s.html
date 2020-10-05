@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<!-- #BeginTemplate "nanaco.dwt" -->
+
+<head>
+<meta charset=utf-8>
+<meta http-equiv="Content-Language" content="ja">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<!-- #BeginEditable "doctitle" -->
+<title>3つのRで</title>
+<!-- #EndEditable -->
+<!--[if lt IE 9]>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142185552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142185552-1');
+</script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<div class="container">
+	<header>
+		<h1>3つのRで...</h1>
+		<p>tripleRのサイト</p>
+		<nav id="snav">
+			<ul>
+				<li></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="page_content">
+		<div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="../index.html" itemprop="item"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1" /></span> &gt; 
+		<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a href="nanaco.html" itemprop="item"><span itemprop="name">
+		nanacoギフト登録ツール</span></a><meta itemprop="position" content="2" /></span>
+	</div>
+	<article>
+	<!-- #BeginEditable "content" -->
+			<h2>ギフトID表示ページ source</h2>
+<!-- #EndEditable -->
+	</article>
+	<aside>
+<!-- #BeginEditable "related" -->
+		<h3>以下&lt;html&gt;から&lt;/html&gt;までの範囲をコピーしてエディタに貼り付けて下さい。</h3>
+		<pre>&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Display nanaco giftID (Ver. 1.0)&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form name="giform" onsubmit="return false"&gt;
+&lt;label for="numberInput"&gt;processed giftId:&lt;/label&gt;
+&lt;input name="processed" type="number" value = "0"/&gt;
+&lt;input name="gifile" type="file" /&gt;
+&lt;button id="gibtn"&gt;set giftId&lt;/button&gt;
+&lt;textarea name="gi01" rows="1" cols="4"&gt;&lt;/textarea&gt;
+&lt;textarea name="gi02" rows="1" cols="4"&gt;&lt;/textarea&gt;
+&lt;textarea name="gi03" rows="1" cols="4"&gt;&lt;/textarea&gt;
+&lt;textarea name="gi04" rows="1" cols="4"&gt;&lt;/textarea&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+// ギフトIDの最大数
+var gi_max = 100;
+// 処理済み数
+var offset = 0;
+// ギフトID用配列
+var giArr;
+// 参照用インデックス
+var k;
+
+// Form要素を取得する
+var form = document.forms.giform;
+
+// 処理済み数が変更されたときの処理
+form.processed.addEventListener('change', function(e) {
+// 処理済み数の読み出し
+offset = Number(form.processed.value);
+// 参照用インデックスの初期化
+k = offset;
+})
+
+// ファイルが読み込まれた時の処理
+form.gifile.addEventListener('change', function(e) {
+
+// ギフトID用配列と参照用インデックスの初期化
+giArr = new Array(gi_max);
+k = offset;
+
+// ファイル情報取得
+var fileinfo = e.target.files[0];
+// FileReaderのインスタンスを作成する
+var reader = new FileReader();
+// 読み込んだファイルの中身を取得する
+reader.readAsText(fileinfo);
+
+// ファイルの中身を取得後に処理を行う
+reader.addEventListener('load', function() {
+// 改行で分割して配列lineArrに格納
+var lineArr = reader.result.split("\n");
+for (var i = 0; i &lt; lineArr.length; i++) {
+// "-----"で始まる行まで読み飛ばし
+if (lineArr[i].indexOf("-----") == 0) {
+var j = 0;
+// ギフトIDをgiArrに格納
+for (i += 1; i &lt; lineArr.length; i += 4) {
+// "====="で始まる行が見つかったら処理終了
+if (lineArr[i].indexOf("=====") == 0) {
+i = lineArr.length;
+} else {
+giArr[j++] = lineArr[i];
+// 配列を使い切ったら処理終了
+if (j == gi_max) {
+i = lineArr.length;
+}
+}
+}}}
+})
+})
+
+// ボタンが押された時の処理
+form.gibtn.addEventListener('click', function() {
+// 配列から処理済み数を考慮して一つ取り出す
+var gistr = giArr[k++];
+// 4桁ずつに分割して表示
+form.gi01.textContent = gistr.substr(0, 4);
+form.gi02.textContent = gistr.substr(4, 4);
+form.gi03.textContent = gistr.substr(8, 4);
+form.gi04.textContent = gistr.substr(12, 4);
+})
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<!-- #EndEditable -->
+	</aside>
+	<div class="inner"><p class="right"><a href="#">▲このページのトップへ</a></p></div>
+</div>
+	<div id="sidebar">
+		<aside>
+			<h3>最近の更新</h3>
+			<p>
+			19/06/16 リリース</p>
+		<h3>&nbsp;</h3>
+			<ul>
+				<li><a href="nanaco.html">概要</a></li>
+				<a href="nanaco_s.html">
+				<li><a href="nanaco_s.html">ギフトID表示ページ</a></li>
+				</a>
+				<li><a href="nanaco_p.html">準備</a></li>
+				<li><a href="nanaco_m.html">iMacrosマクロ</a></li>
+				<li><a href="nanaco_c.html">注意事項</a></li>
+			</ul>
+		</aside>
+	</div>
+	<footer>
+		<p class="center">&copy;2019 [tripleR]</p>
+	</footer>
+</div>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
