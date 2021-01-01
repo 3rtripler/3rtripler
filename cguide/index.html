@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<!-- #BeginTemplate "cguide.dwt" -->
+
+<head>
+<meta charset=utf-8>
+<meta http-equiv="Content-Language" content="ja">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<!-- #BeginEditable "doctitle" -->
+<title>3つのRで</title>
+<!-- #EndEditable -->
+<!--[if lt IE 9]>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142185552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142185552-1');
+</script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<div class="container">
+	<header>
+		<h1>3つのRで...</h1>
+		<p>tripleRのサイト</p>
+		<nav id="snav">
+			<ul>
+				<li></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="page_content">
+		<div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="../index.html" itemprop="item"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1" /></span> &gt; 
+			星座ガイドブックで説明されている全天体を自動導入するアプリ(SynScan関連)<meta itemprop="position" content="2" />
+	</div>
+	<article>
+	<!-- #BeginEditable "content" -->
+			<h2>星座ガイドブック(春夏編・秋冬編 藤井旭著)で説明されている全天体を自動導入するアプリ<br></h2>
+<!-- #EndEditable -->
+	</article>
+	<aside>
+<!-- #BeginEditable "related" -->
+		<h3>開発理由</h3>
+		<p>恐らく還暦を過ぎた天文ファンなら絶対持っている星座ガイドブック(春夏編・秋冬編 藤井旭著)。<br><br>
+		星雲や星団だけならば、それ以降も色々なガイドブックが出ていますが、二重星や変光星、はたまた星座神話まで網羅したものは、後にも先にもこの本だけです。<br>
+		<br>
+		最近価格が低下し一般化している自動導入架台。星雲や星団についてはメシエナンバーやNGCナンバーを入力すれば導入可能ですが、二重星については初期状態では有名なもののみしかデータを持っていません。データの入力も原始的な方法しか用意されていないので、星座ガイドブックに載っている多くの二重星は簡単には自動導入できません。<br>
+		<br>
+		存在するソフトを組み合わせたりして出来ないか調べてみたのですが、使い勝手が悪かったり、膨大な手作業が必要となったりして、これという方法がありません。<br>
+		ならば自分で作るしか無い、ということで作成を決意しました。(勿論自分で使うことが最大の目的です。)</p>
+		<h3>動作条件</h3>
+		<p>SynScan(proを含む)アプリのフロントエンドとして動作します。</p>
+		<h3>現在の状況</h3>
+		<p>現在リリースに向けて最終調整中です。<br>機能の詳細についてもリリースまでに順次公開していく予定です。</p>
+		<h3>機能概要</h3>
+		<p>
+		星座リスト(20時南中時刻順、その日に近いものを中心に表示)から星座を選ぶと、星座ガイドブックで説明されている順番で星雲、星団、二重星がリスト表示されます。(肉眼、双眼鏡、大口径向けとされたものはメシエ天体以外は基本的に除いています。)<br>
+		<br>リストから選択すると個別表示ページとなります。<br>
+		そこで'導入'ボタンを押すと(SynScanアプリが動いていて、アライメントが完了していれば)自動導入が始まります(導入中はボタンが'中止'に変化します)。導入が終了するとボタンの表示は'微動'に変わり、対象を視野の中心に捉えるためにスマフォ上のタッチ、もしくはスマフォを傾けることによる架台の微動が可能になります。、ボタンは'調整'に変わるので、視野のセンターへの対象の導入後ボタンを押すと、SynScanアプリにsyncコマンドが送られ、周辺での導入精度が向上します。<br>
+		<br>個別情報ページには、予め対象毎の情報を記述したファイルを用意しておけば、それが表示されます。<br>
+		星雲星団の見え方や、二重星の離角、角距離を記述しておけば観望時に便利ですが、私は星座ガイドブックの記述をファイルに書き出して、それを表示するようにしています。<br>
+		こうしておけば、観望時にガイドブックを参照する必要が無く、スマフォだけを持って観望することが出来ます。<br>
+		(当然ながらリリースするアプリにはこれらのファイルは含まれていません。)<br><br>
+		標準的な使用法は以上のとおりですが、もう一つ、音楽プレーヤーの'PlayList'のような機能を持つ'ViewList'モードがあります。予め星座から選んだ対象をリストにしておくと、観望時に天体をそのリストから選択して自動導入することが出来ます。その季節にいつも巡る対象を選んでも良いですし、テーマを決めて対象を集める(秋の色の対比のきれいな二重星とか)など、活用方法は音楽プレーヤーのように自由です。<br>
+		(当然ですが連続して自動で導入していくわけではありません。)<br><br>
+		それぞれのViewListはファイルの形式(xml)で保存されるので、作成したViewListを他の人に配布することが可能です。<br>
+		これを利用して観望会でその日のテーマを決めて複数の望遠鏡で同時に観望したり、またショップが顧客に対して季節毎に見頃の天体のリストを配布するようなことも可能です。<br>
+		<br>
+		また、ViewListに含まれる天体の位置情報は、アプリ内のデータへのリンクになっておらず独立したデータとなっている(これは、アプリの持つデータの誤りを修正した時にリストを作成し直さなくてはならないデメリットでもあるのですが)ので、例えば彗星の日毎の予想位置をリストにして配布する、というような使い方も可能になっています。<br>
+		(この場合のデータ作成には簡単なプログラムが必要です。)<br></p>
+		<h3>将来</h3>
+		<p>
+		個別情報ページに表示される情報は、現在はテキストファイルに限定されますが、ブラウザの機能を利用することも可能なので、写真や図を含むような複雑な形式を表示できるように拡張することが可能です。<br>
+		これを利用すれば、書籍とアプリが一体となって機能する現代版の星座ガイドブック、みたいなものも実現可能だと思われます。(個人的希望ですが...)</p>
+<!-- #EndEditable -->
+	</aside>
+	<div class="inner"><p class="right"><a href="#">▲このページのトップへ</a></p></div>
+</div>
+	<div id="sidebar">
+		<aside>
+			<h3>最近の更新</h3>
+			<p>
+			21/01/01 概要公開</p>
+		<h3>&nbsp;</h3>
+			<ul>
+				<li>ダウンロード<br>近日公開予定</li>
+				<li><a href="index.html">概要</a></li>
+				</ul>
+		</aside>
+	</div>
+	<footer>
+		<p class="center">&copy;2021 [tripleR]</p>
+	</footer>
+</div>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
