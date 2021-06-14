@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<!-- #BeginTemplate "cguide.dwt" -->
+
+<head>
+<meta charset=utf-8>
+<meta http-equiv="Content-Language" content="ja">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<!-- #BeginEditable "doctitle" -->
+<title>3つのRで</title>
+<style type="text/css">
+
+
+.auto-style1 {
+	margin-left: 40px;
+}
+</style>
+<!-- #EndEditable -->
+<!--[if lt IE 9]>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142185552-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142185552-1');
+</script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<div class="container">
+	<header>
+		<h1>3つのRで...</h1>
+		<p>tripleRのサイト</p>
+		<nav id="snav">
+			<ul>
+				<li></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="page_content">
+		<div class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="../index.html" itemprop="item"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1" /></span> &gt; 
+			<a href="index.html">星座ガイドブックで説明されている全天体を自動導入するアプリ(SynScan関連)<meta itemprop="position" content="2" />
+			</a>
+	</div>
+	<article>
+	<!-- #BeginEditable "content" -->
+			<h2>ViewLists等</h2>
+<!-- #EndEditable -->
+	</article>
+	<aside>
+<!-- #BeginEditable "related" -->
+		<h3>ViewListsについて</h3>
+		<p>
+		CGuideは基本的に天体の位置情報をsynscanに渡すフロントエンドとして作成され、ViewListsについてもその利用がメインで、作成については付加機能と捉えているので、複雑な処理はできません。<br>
+		(それほど頻度も多くないと思われますし。)<br><br>一度に管理、作成できるのは1つのViewListのみです。同時に複数は行なえません。<br>
+		天体の追加は、個別情報ページのメニューから行います。<br>
+		ViewListモードに入るにはtopページからメニューの'ViewLists'を選択します。<br>
+		追加された天体からViewListを作成するにはViewLists表示のメニューから行います。<br>
+		ViewLIstの名前については、重複チェックを行っているので同一名称のViewListは作成できません。(上書きされる心配もありません。)<br>
+		<br>天体は追加のみが可能で、削除、順番の変更はアプリ内ではできません。<br>
+		ファイルフォーマットを公開していますので、それらについては外部のエディタ等での作業となります。<br>
+		(追加時、作成時にその時点の内容を確認することだけは出来るようにしてあります。)<br><br>
+		また、外部でのデータ作成によって、cguideに含まれていない天体についてのViewListを作ることも可能です。</p>
+		<h3>ファイル形式</h3>
+		<h4>ファイル名 </h4>
+		<p>ViewList名.xml</p>
+		<h4>ファイルフォーマット</h4>
+		<p>&lt;blist&gt;<br>&lt;b cname="星座名" key="オブジェクトキー" name="天体名" ra="赤経" 
+		dec="赤緯"/&gt;<br>&lt;b ... /&gt;<br>&lt;/blist&gt;<br><br>星座名、天体名はViewListの要素として表示されます。<br>
+		(CGuideとは独立しているので外部で作成する場合には整合性は必要ありません。例えば彗星名、日付等が考えられます。)</p>
+		<h4>オブジェクトキー</h4>
+		<ul>
+			<li>
+			<h4>恒星の場合</h4>
+			<p>星座名略符3文字(すべて小文字) + '_' + オブジェクト名</p>
+			<p><em>オブジェクト名(重星の場合、後ろに'1','A'等が付く場合があります)</em></p>
+			<p class="auto-style1">alpha-omega(ギリシア文字に対応する英語表記)<br>A-Z<br>b-z<br>番号</p>
+			</li>
+			<li>
+			<h4>重星・星雲星団の場合</h4>
+				<p>カタログ略号 + 番号<br></p>
+			<p>カタログ略号</p>
+				<p class="auto-style1">s&nbsp;&nbsp;&nbsp; ストルーフェ<br>h&nbsp;&nbsp;&nbsp; ジョン・ハーシェル<br>sh&nbsp; 
+				?<br>v&nbsp;&nbsp;&nbsp; ?</p>
+				<p class="auto-style1">m&nbsp; メシエ<br>n&nbsp;&nbsp; NGC<br>i&nbsp;&nbsp;&nbsp; 
+				IC<br></p>
+			</li>
+		</ul>
+	
+		<p>オブジェクトキーについても、CGuideと独立して作成する場合には、内部の名称と競合しなければ何でも構いません。</p>
+		<h4>赤経 赤緯</h4>
+		<p>synscan APIの位置情報フォーマットである16進4桁で表します。(標準精度を使用しているので)<br><br>
+		標準精度の分解能は360/2**16で約19.8秒、約1/3分。(高精度の場合は360/2**24で約0.08秒)<br>
+		天体の赤経赤緯を秒で表し、その全周(360x60x60)に対する割合に2**16を乗じた数値を16進変換したもの。<br><br>
+		外部でviewlistを作成する際に、名称や赤経赤緯を度分秒で入力したcsvファイルを用意すれば、それからViewLIst形式のmxlフアイルを出力するようなツールを今後提供することを考えています。</p>
+		<h3>天体情報ファイル</h3>
+		<p>外部に天体情報を用意して、個別情報ページでその内容を表示するためには<br><br>オブジェクトキー.txt<br><br>
+		の形式のテキストファイルを用意し/Android/data/work.tripler.cguide/files/Document以下に置きます。<br>
+		文字コードについては。androidなのでUTF8-Nで記述する必要があります。<br>現状ではSDカード上のファイルには対応していません。</p>
+<!-- #EndEditable -->
+	</aside>
+	<div class="inner"><p class="right"><a href="#">▲このページのトップへ</a></p></div>
+</div>
+	<div id="sidebar">
+		<aside>
+			<h3>最近の更新</h3>
+			<p>
+			21/01/01 概要公開<br>21/06/14 付属情報公開</p>
+		<h3>&nbsp;</h3>
+			<ul>
+				<li>ダウンロード<br>近日公開予定</li>
+				<li><a href="index.html">概要</a></li>
+				<li><a href="viewlist.html">ViewLists等</a></li>
+				<li><a href="license.html">関係するライセンス、使用許諾</a></li>
+				</ul>
+		</aside>
+	</div>
+	<footer>
+		<p class="center">&copy;2021 [tripleR]</p>
+	</footer>
+</div>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
