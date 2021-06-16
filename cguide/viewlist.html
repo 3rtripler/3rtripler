@@ -72,7 +72,7 @@
 		また、外部でのデータ作成によって、cguideに含まれていない天体についてのViewListを作ることも可能です。</p>
 		<h3>ファイル形式</h3>
 		<h4>ファイル名 </h4>
-		<p>ViewList名.xml</p>
+		<p>ViewList名.xml<br>場所 /Android/data/work.tripler.cguide/files/Document(天体情報ファイルと同じ)</p>
 		<h4>ファイルフォーマット</h4>
 		<p>&lt;blist&gt;<br>&lt;b cname="星座名" key="オブジェクトキー" name="天体名" ra="赤経" 
 		dec="赤緯"/&gt;<br>&lt;b ... /&gt;<br>&lt;/blist&gt;<br><br>星座名、天体名はViewListの要素として表示されます。<br>
@@ -98,7 +98,8 @@
 	
 		<p>オブジェクトキーについても、CGuideと独立して作成する場合には、内部の名称と競合しなければ何でも構いません。</p>
 		<h4>赤経 赤緯</h4>
-		<p>synscan APIの位置情報フォーマットである16進4桁で表します。(標準精度を使用しているので)<br><br>
+		<p>synscan APIの位置情報フォーマットである16進4桁で表します。(標準精度を使用しているので)<br>
+		実際の表記は、xHHHHの形式になります。(例えばx01AE)<br><br>
 		標準精度の分解能は360/2**16で約19.8秒、約1/3分。(高精度の場合は360/2**24で約0.08秒)<br>
 		天体の赤経赤緯を秒で表し、その全周(360x60x60)に対する割合に2**16を乗じた数値を16進変換したもの。<br><br>
 		外部でviewlistを作成する際に、名称や赤経赤緯を度分秒で入力したcsvファイルを用意すれば、それからViewLIst形式のmxlフアイルを出力するようなツールを今後提供することを考えています。</p>
@@ -114,10 +115,15 @@
 		<aside>
 			<h3>最近の更新</h3>
 			<p>
-			21/01/01 概要公開<br>21/06/14 付属情報公開</p>
+			21/01/01 概要公開<br>21/06/14 付属情報公開<br>21/06/16 Ver. 0.90 リリース</p>
 		<h3>&nbsp;</h3>
 			<ul>
-				<li>ダウンロード<br>近日公開予定</li>
+				<li>ダウンロード<br>
+(Google 
+				Drive上のapkファイル)<br>
+
+				<a href="https://drive.google.com/file/d/1P9uVNON3PMT76JTPTOs7bbpXd9CZhcvx/view?usp=sharing">
+				CGuide</a></li>
 				<li><a href="index.html">概要</a></li>
 				<li><a href="viewlist.html">ViewLists等</a></li>
 				<li><a href="lisence.html">関係するライセンス、使用許諾</a></li>
